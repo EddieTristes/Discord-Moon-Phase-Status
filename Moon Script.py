@@ -94,7 +94,7 @@ def main():
     perform_initial_update()
 
     while True:
-        now = datetime.now() - timedelta(hours=6)  # Convert to CST
+        now = datetime.now() - timedelta(hours=6)
 
         if now.minute == 0:
             print("Checking for moon phase update...")
