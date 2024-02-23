@@ -76,7 +76,10 @@ def perform_initial_update():
     illumination_percentage = moon.moon_phase * 100
     print("Current moon illumination:", illumination_percentage)
     print("Current moon phase:", phase_name)
-    illumination_formatted = "{:.1f}".format(illumination_percentage)
+    if illumination_percentage == 100 or illumination_percentage == 0:
+        illumination_formatted = "{:.0f}".format(illumination_percentage)
+    else:
+        illumination_formatted = "{:.1f}".format(illumination_percentage)
 
     message = f"Tonight's phase is a {phase_name}! The moon's illumination is {illumination_formatted}%"
     emoji = resolve_icon(phase_name)
@@ -106,7 +109,10 @@ def main():
             illumination_percentage = moon.moon_phase * 100
             print("Current moon illumination:", illumination_percentage)
             print("Current moon phase:", phase_name)
-            illumination_formatted = "{:.1f}".format(illumination_percentage)
+            if illumination_percentage == 100 or illumination_percentage == 0:
+                illumination_formatted = "{:.0f}".format(illumination_percentage)
+            else:
+                illumination_formatted = "{:.1f}".format(illumination_percentage)
 
             message = f"Tonight's phase is a {phase_name}! The moon's illumination is {illumination_formatted}%"
             emoji = resolve_icon(phase_name)
