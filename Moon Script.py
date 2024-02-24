@@ -2,7 +2,7 @@ import ephem
 import requests
 import json
 import time
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 token = ""  # Put your Discord Token here. You can learn how at https://github.com/Tyrrrz/DiscordChatExporter/blob/master/.docs/Token-and-IDs.md
 
@@ -10,27 +10,29 @@ iteration_count = 1
 
 def get_moon_phase():
     observer = ephem.Observer()
-    observer.date = ephem.now()
+    current_date = datetime.now(timezone.utc).date()
+    observer.date = current_date
     moon = ephem.Moon(observer)
-
     illumination = moon.moon_phase * 100
 
-    next_new_moon_date = ephem.next_new_moon(observer.date)
-    next_first_quarter_date = ephem.next_first_quarter_moon(observer.date)
-    next_full_moon_date = ephem.next_full_moon(observer.date)
-    next_last_quarter_date = ephem.next_last_quarter_moon(observer.date)
+    next_new_moon_date = ephem.next_new_moon(observer.date).datetime().date()
+    next_first_quarter_date = ephem.next_first_quarter_moon(observer.date).datetime().date()
+    next_full_moon_date = ephem.next_full_moon(observer.date).datetime().date()
+    next_last_quarter_date = ephem.next_last_quarter_moon(observer.date).datetime().date()
 
-    if observer.date == next_new_moon_date:
+    observer_date = observer.date.datetime().date()
+
+    if observer_date == next_new_moon_date:
         return "New Moon"
-    elif observer.date == next_first_quarter_date:
+    elif observer_date == next_first_quarter_date:
         return "First Quarter"
-    elif observer.date == next_last_quarter_date:
+    elif observer_date == next_last_quarter_date:
         return "Third Quarter"
-    elif observer.date == next_full_moon_date:
+    elif observer_date == next_full_moon_date:
         return "Full Moon"
-    elif observer.date < next_full_moon_date and observer.date < next_new_moon_date:
+    elif observer_date < next_full_moon_date and observer_date < next_new_moon_date:
         return "Waxing Crescent" if illumination < 50 else "Waxing Gibbous"
-    elif observer.date > next_full_moon_date and observer.date > next_new_moon_date:
+    elif observer_date > next_full_moon_date and observer_date > next_new_moon_date:
         return "Waning Crescent" if illumination < 50 else "Waning Gibbous"
 
 def resolve_icon(phase_name):
