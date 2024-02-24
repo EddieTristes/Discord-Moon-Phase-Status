@@ -4,7 +4,7 @@ Detects the moon phase and current illumination, and sets it as your Discord sta
 
 Here is an example of the status:
 
-> 🌕 Tonight's phase is a Full Moon! The moon's illumination is 100%
+> 🌕 Current phase is a Full Moon! The moon's illumination is 100%
 
 You will need:
 
