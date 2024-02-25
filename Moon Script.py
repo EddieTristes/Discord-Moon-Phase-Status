@@ -102,7 +102,7 @@ def main():
         print("Updating custom status...\n")
         print(f"Status: {message}\n")
         update_custom_status(message, emoji)
-        print("Custom status updated! Waiting a minute to change status...")
+        print("Custom status updated! Waiting an hour to change status...")
         print("==========================\n")
 
         iteration_count = iteration_count + 1
