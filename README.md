@@ -1,5 +1,7 @@
 # Discord Moon Phase Status
 
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/X8X8Z15EK)
+
 Detects the moon phase and current illumination, and sets it as your Discord status using selfbot along with an accompanying phase emoji. 🌝
 
 Here is an example of the status:
